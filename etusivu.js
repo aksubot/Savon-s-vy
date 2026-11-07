@@ -1,0 +1,229 @@
+const referenssiDialog = document.getElementById("referenssiTiedot");
+const referenssiLista = document.getElementById("referenssiLista");
+const referenssiKuva = document.getElementById("referenssiKuva");
+const referenssiOtsikko = document.getElementById("referenssiOtsikko");
+const referenssiKuvaus = document.getElementById("referenssiKuvaus");
+const suljeReferenssi = document.getElementById("suljeReferenssi");
+const edellinenKuva = document.getElementById("edellinenKuva");
+const seuraavaKuva = document.getElementById("seuraavaKuva");
+const kuvaLaskuri = document.getElementById("kuvaLaskuri");
+const nav = document.querySelector("nav");
+const menuToggle = document.querySelector(".menuToggle");
+
+function suljeValikko() {
+    nav.dataset.menuOpen = "false";
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Avaa valikko");
+}
+
+menuToggle.addEventListener("click", () => {
+    const avattu = menuToggle.getAttribute("aria-expanded") === "true";
+    nav.dataset.menuOpen = String(!avattu);
+    menuToggle.setAttribute("aria-expanded", String(!avattu));
+    menuToggle.setAttribute("aria-label", avattu ? "Avaa valikko" : "Sulje valikko");
+});
+
+nav.querySelectorAll(".links a").forEach((link) => {
+    link.addEventListener("click", suljeValikko);
+});
+
+document.addEventListener("click", (event) => {
+    if (!nav.contains(event.target)) {
+        suljeValikko();
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+        suljeValikko();
+        menuToggle.focus();
+    }
+});
+
+const aboutSection = document.querySelector(".about");
+const aboutImages = [
+    { selector: ".kuva1", x: -1, y: -0.5 },
+    { selector: ".kuva2", x: -1, y: 0.5 },
+    { selector: ".kuva3", x: 1, y: 0.5 },
+    { selector: ".kuva4", x: 1, y: -0.5 }
+].map(({ selector, x, y }) => ({
+    element: aboutSection.querySelector(selector),
+    x,
+    y
+}));
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let aboutScrollUpdatePending = false;
+
+function updateAboutImages() {
+    aboutScrollUpdatePending = false;
+
+    if (reducedMotion.matches || window.innerWidth <= 650) {
+        aboutImages.forEach(({ element }) => {
+            element.style.transform = "";
+        });
+        return;
+    }
+
+    const bounds = aboutSection.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0,
+        (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)
+    ));
+    const distance = progress * Math.min(160, Math.max(32, window.innerWidth * 0.12));
+
+    aboutImages.forEach(({ element, x, y }) => {
+        element.style.transform = `translate3d(${distance * x}px, ${distance * y}px, 0)`;
+    });
+}
+
+function scheduleAboutImageUpdate() {
+    if (!aboutScrollUpdatePending) {
+        aboutScrollUpdatePending = true;
+        window.requestAnimationFrame(updateAboutImages);
+    }
+}
+
+window.addEventListener("scroll", scheduleAboutImageUpdate, { passive: true });
+window.addEventListener("resize", scheduleAboutImageUpdate);
+reducedMotion.addEventListener("change", scheduleAboutImageUpdate);
+scheduleAboutImageUpdate();
+
+const referenssit = [
+    {
+        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.21.334.jpeg",
+        images: [
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.21.334.jpeg",
+            "./Kuvat/1.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.092.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.105.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.106.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1011.jpeg"
+        ],
+        title: "Maalauskohde 1",
+        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt. "
+    },
+    {
+        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.09.jpeg",
+        images: [
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.09.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.jpeg"
+        ],
+        title: "Maalauskohde 2",
+        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+    },
+    {
+        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1012.jpeg",
+        images: [
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1012.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1114.jpeg"
+        ],
+        title: "Maalauskohde 2",
+        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+    },
+    {
+        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2842.jpeg",
+        images: [
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2842.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1115.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1118.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1120.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2945.jpeg"
+        ],
+        title: "Maalauskohde 2",
+        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+    },
+    {
+        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2734.jpeg",
+        images: [
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2733.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2734.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2735.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2736.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2838.jpeg"
+        ],
+        title: "Maalauskohde 2",
+        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+    },
+    {
+        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2950.jpeg",
+        images: [
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2950.jpeg"
+        ],
+        title: "Maalauskohde 2",
+        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+    },
+    {
+        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.27.jpeg",
+        images: [
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.27.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2528.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2424.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2629.jpeg"
+        ],
+        title: "Maalauskohde 2",
+        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+    }
+];
+
+let aktiivinenReferenssi = null;
+let aktiivinenKuva = 0;
+
+function naytaKuva() {
+    const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
+    referenssiKuva.src = kuvat[aktiivinenKuva];
+    referenssiKuva.alt = `${aktiivinenReferenssi.title} – kuva ${aktiivinenKuva + 1}`;
+    kuvaLaskuri.textContent = `${aktiivinenKuva + 1} / ${kuvat.length}`;
+    edellinenKuva.hidden = kuvat.length < 2;
+    seuraavaKuva.hidden = kuvat.length < 2;
+}
+
+referenssit.forEach((referenssi) => {
+    const button = document.createElement("button");
+    button.className = "referenssi";
+    button.type = "button";
+    button.setAttribute("aria-haspopup", "dialog");
+    button.setAttribute("aria-controls", "referenssiTiedot");
+
+    const image = document.createElement("img");
+    image.className = "kuva";
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.alt = referenssi.title;
+    image.src = referenssi.image;
+
+    const title = document.createElement("span");
+    title.textContent = referenssi.title;
+
+    button.append(image, title);
+    button.addEventListener("click", () => {
+        aktiivinenReferenssi = referenssi;
+        aktiivinenKuva = 0;
+        naytaKuva();
+        referenssiOtsikko.textContent = referenssi.title;
+        referenssiKuvaus.textContent = referenssi.description;
+        referenssiDialog.showModal();
+    });
+
+    referenssiLista.append(button);
+});
+
+edellinenKuva.addEventListener("click", () => {
+    const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
+    aktiivinenKuva = (aktiivinenKuva - 1 + kuvat.length) % kuvat.length;
+    naytaKuva();
+});
+
+seuraavaKuva.addEventListener("click", () => {
+    const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
+    aktiivinenKuva = (aktiivinenKuva + 1) % kuvat.length;
+    naytaKuva();
+});
+
+suljeReferenssi.addEventListener("click", () => {
+    referenssiDialog.close();
+});
+
+referenssiDialog.addEventListener("click", (event) => {
+    if (event.target === referenssiDialog) {
+        referenssiDialog.close();
+    }
+});

@@ -1,0 +1,262 @@
+:root{
+    --nav-height: 120px;
+    --otsikko-koko: clamp(2.5rem, 6vw, 6rem);
+    --otsikko2-koko: clamp(2rem, 5vw, 4rem);
+    --väliotsikko-koko: clamp(1.75rem, 4vw, 3rem);
+    --väliotsikko2-koko: clamp(1.5rem, 3.5vw, 2.5rem);
+    --iso-teksti-koko: clamp(1.25rem, 2.5vw, 2.25rem);
+    --teksti-koko: clamp(1.125rem, 2vw, 2rem);
+    --pieni-teksti-koko: clamp(1rem, 1.75vw, 1.75rem);
+    --pieni-teksti2-koko: clamp(1rem, 1.5vw, 1.5rem);
+
+    --väri-main: #fcc604;
+    --väri-body: #fafafa;
+    --väri-teksti: #1c1c1c;
+    --väri-teksti-secondary: rgba(0, 0, 0, 0.6);
+}
+
+html{
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--väri-body);
+    color: var(--väri-teksti);
+
+    overflow-x: clip;
+}
+
+p{
+    max-inline-size: 65ch;
+}
+p, body{
+    text-wrap: pretty;
+    letter-spacing: -0.01em;
+    font-family: "Poppins", sans-serif;
+}
+h1, h2, h3, h4, h5, h6{
+    text-wrap: balance;
+    letter-spacing: -0.06em;
+    font-family: "Archivo Black", sans-serif;
+}
+
+.archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.brushStroke{
+   rotate: 9deg;
+}
+
+.button{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    cursor: pointer;
+    height: 60px;
+}
+.button p{
+    position: absolute;
+    white-space: nowrap;
+}
+.button img{
+    width: inherit;
+    position: absolute;
+}
+
+.button:hover img{
+    animation: brushStrokeAnimation 0.8s forwards ease;
+    
+}
+/* @keyframes brushStrokeAnimation {
+    0%{
+        clip-path: inset(0 100% 0 0);
+    }    
+    20%{
+        clip-path: inset(0 100% 0 0);
+    }
+    35%{
+        clip-path: inset(0 66% 0 0);
+    }    
+    55%{
+        clip-path: inset(0 66% 0 0);
+    }
+    70%{
+        clip-path: inset(0 33% 0 0);
+    }
+    90%{
+        clip-path: inset(0 33% 0 0);
+    }
+    100%{
+        clip-path: inset(0 0 0 0);
+    }
+} */
+/* ENSIMMÄINEN VERSIO */
+@keyframes brushStrokeAnimation {
+    from{
+        clip-path: inset(0 100% 0 0);
+    }
+    to{
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 16px clamp(20px, 4vw, 56px);
+    min-height: var(--nav-height);
+    background-color: var(--väri-body);
+    color: var(--väri-teksti);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+nav .logo{
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+nav .logo h1{
+    font-size: inherit;
+    line-height: 1.15;
+}
+nav .links{
+    display: flex;
+    gap: clamp(16px, 2.5vw, 36px);
+    align-items: center;
+    margin-left: auto;
+}
+.menuToggle{
+    display: none;
+}
+nav a{
+    text-decoration: none;
+    color: var(--väri-teksti);
+}
+nav a:hover{
+    color: var(--väri-main);
+}
+
+img, .img, .kuva{
+    border-radius: 20px;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, .3));
+}
+.button img{
+    filter: none;
+}
+
+@media (max-width: 760px){
+    :root{
+        --nav-height: 76px;
+    }
+    nav{
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 20px;
+    }
+    nav .logo{
+        font-size: 1.1rem;
+        line-height: 1.2;
+    }
+    .menuToggle{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        margin-left: auto;
+        border: 1px solid rgba(28, 28, 28, .2);
+        border-radius: 10px;
+        background: transparent;
+        color: var(--väri-teksti);
+        cursor: pointer;
+    }
+    .menuToggle span{
+        display: block;
+        width: 20px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        transition: transform .2s ease, opacity .2s ease;
+    }
+    .menuToggle[aria-expanded="true"] span:first-child{
+        transform: translateY(7px) rotate(45deg);
+    }
+    .menuToggle[aria-expanded="true"] span:nth-child(2){
+        opacity: 0;
+    }
+    .menuToggle[aria-expanded="true"] span:last-child{
+        transform: translateY(-7px) rotate(-45deg);
+    }
+    .menuToggle:focus-visible{
+        outline: 3px solid var(--väri-main);
+        outline-offset: 3px;
+    }
+    nav .links{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+        padding: 8px 20px 20px;
+        background: var(--väri-body);
+        box-shadow: 0 12px 18px rgba(0, 0, 0, .12);
+        margin: 0;
+    }
+    nav[data-menu-open="true"] .links{
+        display: flex;
+    }
+    nav .navlink{
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(28, 28, 28, .12);
+    }
+    nav .navlink a{
+        display: block;
+        font-size: 1rem;
+    }
+    nav .navButton{
+        width: min(100%, 240px);
+        height: 48px;
+        margin-top: 12px;
+        flex: 0 0 auto;
+    }
+    nav .navButton img{
+        width: 100%;
+    }
+    nav .navButton p{
+        font-size: .9rem;
+    }
+}

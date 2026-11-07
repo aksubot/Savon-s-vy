@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savon sävy</title>
+    <link rel="icon" href="./favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="manifest" href="./site.webmanifest">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./basics.css">
+    <link rel="stylesheet" href="./etusivu.css">
+    <link rel="preload" as="image" href="./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2424.jpeg" fetchpriority="high">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <h1>Savon sävy</h1>
+        </div>
+        <button class="menuToggle" type="button" aria-label="Avaa valikko" aria-expanded="false" aria-controls="paavalikko">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="links" id="paavalikko">
+            <div class="navlink">
+                <a href="#referenssit">Referenssit</a>
+            </div>
+            <div class="navlink">
+                <a href="#yhteystiedot">Yhteystiedot</a>
+            </div>
+            <div class="button navButton">
+                <img class="brushStroke" src="./Kuvat/Kultainen siveltimen veto läpinäkyvällä taustalla-Photoroom.png" alt="">
+                <p>Pyydä ilmainen arvio</p>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Ammattimainen talomaalaus Savossa</h1>
+        <p>Savon sävyn yritteliäät ja innokkaat nuoret hoitavat 
+            talosi maalauksen nopeasti ja ammattimaisesti.
+        </p>
+        
+        <img src="./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2424.jpeg" alt="Maalattu omakotitalo Savossa" loading="eager" fetchpriority="high" decoding="async">
+    </main>
+
+    <div class="about">
+        <h1>Kokenutta ja huolellista maalausta</h1>
+        <p>Olemme kaksi nuorta toiminimiyrittäjää Kuopiosta ja teemme
+            kesäisin maalaustöitä. Kokemusta löytyy jo <span style="font-weight: bold;">4 vuoden ajalta</span>
+            Saat meiltä ammattitaitoista, huolellista ja laadukasta maalauspalvelua 
+            joustavasti ja kilpailukykyiseen hintaan.
+        </p>
+        <img src="./Kuvat/Kultainen siveltimen veto läpinäkyvällä taustalla-Photoroom.png" alt="" class="tausta brushStroke">
+        <div class="kuvat">
+            <img class="kuva1 kuva" src="./Kuvat/WhatsApp Image 2026-10-31 at 20.22.jpeg" alt="" loading="lazy" decoding="async">
+            <img class="kuva2 kuva" src="./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2950.jpeg" alt="" loading="lazy" decoding="async">
+            <img class="kuva3 kuva" src="./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1115.jpeg" alt="" loading="lazy" decoding="async">
+            <img class="kuva4 kuva" src="./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1012.jpeg" alt="" loading="lazy" decoding="async">
+        </div>
+    </div>
+
+    <div class="tiimi">
+        <div class="tiimiCont">
+            <h1>Tässä nuorekkaat työntekijämme</h1>
+            <p>Nämä karskit ja komeat työläisemme vastaavat talosi maalaamisesta.</p>
+            <div class="kortit">
+                <div class="kortti">
+                    <img class="kuva" src="./Kuvat/Eemil-naamakuva.jpeg" alt="" loading="lazy" decoding="async">
+                    <div class="teksti">
+                        <h2>Eemil Tissari</h2>
+                        <p><span>Puhelinnumero:</span> 044 971 5366</p>
+                        <p><span>Sähköposti:</span> eemiltissari@gmail.com</p>
+                        <p><span>Y-tunnus:</span> En jaksa ettii</p>
+                    </div>
+                </div>
+                <div class="kortti">
+                    <img class="kuva" src="./Kuvat/Pietsu-naamakuva.jpeg" alt="" loading="lazy" decoding="async">
+                    <div class="teksti">
+                        <h2>Petrus Juvonen</h2>
+                        <p><span>Puhelinnumero:</span> 040 525 5857</p>
+                        <p><span>Sähköposti:</span> petrusjuvonen@gmail.com</p>
+                        <p><span>Y-tunnus:</span> En jaksa ettii</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="referenssit" id="referenssit">
+        <h1>Maalaamiamme taloja</h1>
+        <p>Klikkaa kuvia, niin näet lisää kuvia sekä tekstiä talosta.</p>
+        <div class="referenssitCont" id="referenssiLista"></div>
+    </div>
+
+    <dialog class="referenssiDialog" id="referenssiTiedot" aria-labelledby="referenssiOtsikko">
+        <div class="referenssiSisalto">
+            <div class="referenssiSlider">
+                <button class="sliderNuoli sliderEdellinen" id="edellinenKuva" type="button" aria-label="Edellinen kuva">&#10094;</button>
+                <img class="referenssiIsoKuva" id="referenssiKuva" alt="" decoding="async">
+                <button class="sliderNuoli sliderSeuraava" id="seuraavaKuva" type="button" aria-label="Seuraava kuva">&#10095;</button>
+                <span class="sliderLaskuri" id="kuvaLaskuri" aria-live="polite"></span>
+            </div>
+            <div class="referenssiTeksti">
+                <h2 id="referenssiOtsikko"></h2>
+                <p id="referenssiKuvaus"></p>
+                <button class="referenssiTakaisin" id="suljeReferenssi" type="button">Takaisin kuviin</button>
+            </div>
+        </div>
+    </dialog>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="footerSisalto">
+            <div class="footerEsittely">
+                <h2>Savon sävy</h2>
+                <p>Ota yhteyttä, niin suunnitellaan talollesi uusi sävy.</p>
+            </div>
+            <div class="footerYhteystiedot">
+                <h2>Yhteystiedot</h2>
+                <div class="footerHenkilot">
+                    <address>
+                        <img class="footerKuva" src="./Kuvat/Eemil-naamakuva.jpeg" alt="" loading="lazy" decoding="async">
+                        <h3>Eemil Tissari</h3>
+                        <a href="tel:+358449715366">044 971 5366</a>
+                        <a href="mailto:eemiltissari@gmail.com">eemiltissari@gmail.com</a>
+                    </address>
+                    <address>
+                        <img class="footerKuva" src="./Kuvat/Pietsu-naamakuva.jpeg" alt="" loading="lazy" decoding="async">
+                        <h3>Petrus Juvonen</h3>
+                        <a href="tel:+358405255857">040 525 5857</a>
+                        <a href="mailto:petrusjuvonen@gmail.com">petrusjuvonen@gmail.com</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./etusivu.js" defer></script>
+</body>
+</html>

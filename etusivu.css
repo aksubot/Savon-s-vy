@@ -1,0 +1,450 @@
+main{
+    display: flex;
+    flex-direction: column;
+    padding: var(--nav-height) 24px 0;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+main img{
+    display: block;
+    width: min(88%, 1100px);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-top: clamp(32px, 6vw, 64px);
+}
+main h1{
+    font-size: var(--otsikko2-koko);
+    text-transform: uppercase;
+    max-width: 1000px;
+    margin-top: clamp(32px, 5vw, 64px);
+    line-height: 1.08;
+}
+main > p{
+    max-width: 60ch;
+    margin-top: 16px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+}
+
+
+.about{
+    min-height: clamp(650px, 70vw, 900px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin: clamp(64px, 12vw, 180px) auto;
+    padding: 64px 24px;
+}
+.about h1{
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    font-size: var(--väliotsikko-koko);
+    line-height: 1.1;
+    -webkit-text-stroke: 2.5px var(--väri-main);
+    paint-order: stroke fill;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+}
+.about > p{
+    position: relative;
+    z-index: 1;
+    max-width: 60ch;
+    margin-top: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    line-height: 1.8;
+    -webkit-text-stroke: 2px var(--väri-main);
+    paint-order: stroke fill;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+}
+.about .tausta{
+    position: absolute;
+    z-index: -1;
+    height: min(60vw, 550px);
+    width: min(60%, 900px);
+    rotate: 17deg;
+    filter: none;
+}
+
+.about .kuvat{
+    position: absolute;
+    width: min(80vw, 1200px);
+    height: min(80vh, 760px);
+}
+.about .kuva1{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    filter: brightness(1.4) saturate(1.4) drop-shadow(0px 10px 5px rgba(0, 0, 0, .3));
+
+}
+.about .kuva2{
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+
+    position: absolute;
+    left: 50px;
+    bottom: 0;
+}
+.about .kuva3{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+
+    position: absolute;
+    right: 50px;
+    bottom: 25px;
+
+    filter: brightness(1.2) saturate(1.4) drop-shadow(0px 10px 5px rgba(0, 0, 0, .3));
+
+}
+.about .kuva4{
+    width: 280px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+
+    position: absolute;
+    right: 150px;
+    top: 25px;
+
+    filter: brightness(1.2) saturate(1.4) drop-shadow(0px 10px 5px rgba(0, 0, 0, .3));
+}
+
+
+.tiimi{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 clamp(16px, 5vw, 64px);
+}
+.tiimiCont{
+    width: min(100%, 1200px);
+    min-width: 0;
+    padding: clamp(32px, 6vw, 80px) clamp(20px, 5vw, 64px);
+    background-color: var(--väri-main);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.tiimiCont > h1{
+    font-size: var(--väliotsikko-koko);
+    line-height: 1.1;
+}
+.tiimiCont > p{
+    margin-top: 12px;
+}
+
+.kortit{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 3vw, 32px);
+    width: min(100%, 820px);
+    margin-top: clamp(32px, 5vw, 64px);
+}
+.kortti{
+    min-width: 0;
+    border-radius: 20px;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, .2));
+    background-color: var(--väri-body);
+    padding: clamp(16px, 3vw, 32px);
+}
+.kortti .kuva{
+    filter: brightness(1.1) contrast(1.2) saturate(1.2);
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center;
+}
+.kortti .teksti{
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+.kortti .teksti h2{
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 200;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+}
+.kortti .teksti p{
+    font-size: clamp(.8rem, 1.3vw, 1rem);
+    line-height: 1.6;
+}
+.kortti .teksti span{
+    font-weight: bold;
+    margin: auto;
+}
+
+
+.referenssit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(72px, 10vw, 120px) 24px;
+    text-align: center;
+    scroll-margin-top: var(--nav-height);
+    width: 100%;
+}
+.referenssit > h1{
+    font-size: var(--väliotsikko-koko);
+}
+.referenssit > p{
+    margin-top: 12px;
+    font-size: clamp(.95rem, 1.6vw, 1.1rem);
+}
+.referenssitCont{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    justify-content: center;
+    gap: clamp(12px, 2vw, 24px);
+    width: min(100%, 1200px);
+    margin-top: clamp(24px, 4vw, 40px);
+}
+.referenssi{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 0;
+    border-radius: 20px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease, filter 0.3s ease, transform 0.2s ease;
+}
+.referenssi:hover{
+    background-color: #fff;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, .3));
+    transform: translateY(-4px);
+}
+.referenssi:focus-visible,
+.referenssiTakaisin:focus-visible{
+    outline: 3px solid var(--väri-teksti);
+    outline-offset: 4px;
+}
+.referenssi .kuva{
+    display: block;
+    height: 180px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+}
+.referenssiDialog{
+    width: min(1000px, calc(100% - 32px));
+    max-width: none;
+    max-height: calc(100% - 32px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 0;
+    border-radius: 20px;
+    color: var(--väri-teksti);
+    background: var(--väri-body);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+}
+.referenssiDialog::backdrop{
+    background: rgba(0, 0, 0, .65);
+}
+.referenssiSisalto{
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(240px, .9fr);
+    align-items: center;
+    gap: 32px;
+    padding: 32px;
+}
+.referenssiSlider{
+    position: relative;
+    min-width: 0;
+}
+.referenssiIsoKuva{
+    display: block;
+    width: 100%;
+    max-height: 65vh;
+    object-fit: cover;
+}
+.sliderNuoli{
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    transform: translateY(-50%);
+    border: 0;
+    border-radius: 50%;
+    background: rgba(28, 28, 28, .75);
+    color: #fff;
+    font: inherit;
+    font-size: 22px;
+    cursor: pointer;
+}
+.sliderNuoli:hover{
+    background: var(--väri-teksti);
+}
+.sliderNuoli:focus-visible{
+    outline: 3px solid var(--väri-main);
+    outline-offset: 3px;
+}
+.sliderEdellinen{
+    left: 12px;
+}
+.sliderSeuraava{
+    right: 12px;
+}
+.sliderLaskuri{
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(28, 28, 28, .75);
+    color: #fff;
+    font-size: 14px;
+}
+.referenssiTeksti h2{
+    margin-bottom: 16px;
+}
+.referenssiTeksti p{
+    line-height: 1.7;
+}
+.referenssiTakaisin{
+    margin-top: 24px;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--väri-main);
+    color: var(--väri-teksti);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.footer{
+    width: 100%;
+    padding: clamp(40px, 6vw, 64px) max(20px, 6vw);
+    background: var(--väri-teksti);
+    color: var(--väri-body);
+}
+.footerSisalto{
+    display: flex;
+    justify-content: space-between;
+    gap: clamp(32px, 5vw, 72px);
+    width: min(100%, 1200px);
+    margin: 0 auto;
+}
+.footerEsittely,
+.footerYhteystiedot{
+    min-width: 0;
+}
+.footer h2{
+    margin-bottom: 16px;
+    color: var(--väri-main);
+    font-size: 24px;
+}
+.footerEsittely p{
+    max-width: 32ch;
+    line-height: 1.7;
+}
+.footerHenkilot{
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 48px);
+}
+.footer address{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    font-style: normal;
+}
+.footerKuva{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.footer address h3{
+    margin-bottom: 4px;
+    font-size: 18px;
+}
+.footer a{
+    color: var(--väri-body);
+    text-decoration-color: var(--väri-main);
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
+}
+.footer a:hover{
+    color: var(--väri-main);
+}
+@media (max-width: 650px){
+    .referenssiSisalto{
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: clamp(16px, 5vw, 24px);
+    }
+    .referenssiIsoKuva{
+        max-height: 40vh;
+    }
+    .about{
+        min-height: 0;
+        margin: 72px auto;
+        padding: 24px;
+    }
+    .about .tausta,
+    .about .kuvat{
+        display: none;
+    }
+    .tiimi{
+        padding-inline: 16px;
+    }
+    .kortit{
+        grid-template-columns: minmax(0, 420px);
+        justify-content: center;
+    }
+    .footerSisalto{
+        flex-direction: column;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 380px){
+    .referenssiDialog{
+        width: calc(100% - 16px);
+        max-height: calc(100% - 16px);
+    }
+    .referenssiSisalto{
+        padding: 12px;
+    }
+    .sliderNuoli{
+        width: 38px;
+        height: 38px;
+    }
+    .footerHenkilot{
+        flex-direction: column;
+        gap: 24px;
+    }
+}

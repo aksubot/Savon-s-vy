@@ -1,0 +1,97 @@
+.tietosuojaYlapalkki,
+.tietosuojaAlapalkki{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px max(20px, 6vw);
+}
+.tietosuojaYlapalkki{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    min-height: var(--nav-height);
+    background: var(--väri-body);
+    box-shadow: 0 4px 18px rgba(28, 28, 28, .06);
+}
+.tietosuojaLogo{
+    color: var(--väri-teksti);
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.tietosuojaTakaisin,
+.tietosuojaAlapalkki a{
+    color: inherit;
+    text-decoration-color: var(--väri-main);
+    text-underline-offset: 4px;
+}
+.tietosuojaSivu{
+    width: min(100% - 40px, 860px);
+    margin: 0 auto;
+    padding: clamp(48px, 8vw, 88px) 0;
+}
+.tietosuojaSivu > h1{
+    margin-top: 12px;
+    font-size: var(--väliotsikko-koko);
+    line-height: 1.1;
+}
+.tietosuojaPaivays{
+    margin-top: 12px;
+    color: var(--väri-teksti-secondary);
+}
+.tietosuojaHuomio{
+    margin-top: 32px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--väri-main);
+    border-radius: 0 12px 12px 0;
+    background: #f3f1e9;
+    line-height: 1.7;
+}
+.tietosuojaSivu section{
+    margin-top: 36px;
+}
+.tietosuojaSivu section h2{
+    margin-bottom: 12px;
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    line-height: 1.3;
+}
+.tietosuojaSivu section p,
+.tietosuojaSivu section li{
+    line-height: 1.75;
+}
+.tietosuojaSivu section p + p,
+.tietosuojaSivu section p + ul{
+    margin-top: 12px;
+}
+.tietosuojaSivu section ul{
+    padding-left: 1.4rem;
+}
+.tietosuojaSivu section li + li{
+    margin-top: 6px;
+}
+.tietosuojaSivu a{
+    color: inherit;
+    text-decoration-color: var(--väri-main);
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+}
+.tietosuojaSivu a:hover,
+.tietosuojaTakaisin:hover,
+.tietosuojaAlapalkki a:hover{
+    color: var(--väri-teksti-secondary);
+}
+.tietosuojaAlapalkki{
+    background: var(--väri-teksti);
+    color: var(--väri-body);
+}
+@media (max-width: 520px){
+    .tietosuojaYlapalkki,
+    .tietosuojaAlapalkki{
+        padding-inline: 20px;
+    }
+    .tietosuojaTakaisin{
+        font-size: .9rem;
+    }
+}

@@ -82,8 +82,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .button:hover img{
-    animation: brushStrokeAnimation 0.8s forwards ease;
-    
+    animation: brushStrokeAnimation 0.8s forwards ease;  
 }
 /* @keyframes brushStrokeAnimation {
     0%{

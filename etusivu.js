@@ -40,52 +40,52 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-const aboutSection = document.querySelector(".about");
-const aboutImages = [
+const mainSection = document.querySelector("main");
+const mainImages = [
     { selector: ".kuva1", x: -1, y: -0.5 },
     { selector: ".kuva2", x: -1, y: 0.5 },
-    { selector: ".kuva3", x: 1, y: 0.5 },
-    { selector: ".kuva4", x: 1, y: -0.5 }
+    { selector: ".kuva4", x: 1, y: 0.5 },
+    { selector: ".kuva3", x: 1, y: -0.5 }
 ].map(({ selector, x, y }) => ({
-    element: aboutSection.querySelector(selector),
+    element: mainSection.querySelector(selector),
     x,
     y
 }));
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-let aboutScrollUpdatePending = false;
+let mainScrollUpdatePending = false;
 
-function updateAboutImages() {
-    aboutScrollUpdatePending = false;
+function updateMainImages() {
+    mainScrollUpdatePending = false;
 
-    if (reducedMotion.matches || window.innerWidth <= 650) {
-        aboutImages.forEach(({ element }) => {
+    if (reducedMotion.matches || window.innerWidth < 1370) {
+        mainImages.forEach(({ element }) => {
             element.style.transform = "";
         });
         return;
     }
 
-    const bounds = aboutSection.getBoundingClientRect();
+    const bounds = mainSection.getBoundingClientRect();
     const progress = Math.min(1, Math.max(0,
         (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)
     ));
     const distance = progress * Math.min(160, Math.max(32, window.innerWidth * 0.12));
 
-    aboutImages.forEach(({ element, x, y }) => {
+    mainImages.forEach(({ element, x, y }) => {
         element.style.transform = `translate3d(${distance * x}px, ${distance * y}px, 0)`;
     });
 }
 
-function scheduleAboutImageUpdate() {
-    if (!aboutScrollUpdatePending) {
-        aboutScrollUpdatePending = true;
-        window.requestAnimationFrame(updateAboutImages);
+function scheduleMainImageUpdate() {
+    if (!mainScrollUpdatePending) {
+        mainScrollUpdatePending = true;
+        window.requestAnimationFrame(updateMainImages);
     }
 }
 
-window.addEventListener("scroll", scheduleAboutImageUpdate, { passive: true });
-window.addEventListener("resize", scheduleAboutImageUpdate);
-reducedMotion.addEventListener("change", scheduleAboutImageUpdate);
-scheduleAboutImageUpdate();
+window.addEventListener("scroll", scheduleMainImageUpdate, { passive: true });
+window.addEventListener("resize", scheduleMainImageUpdate);
+reducedMotion.addEventListener("change", scheduleMainImageUpdate);
+scheduleMainImageUpdate();
 
 const referenssit = [
     {

@@ -47,6 +47,11 @@ h1, h2, h3, h4, h5, h6{
     letter-spacing: -0.06em;
     font-family: "Archivo Black", sans-serif;
 }
+/* @media screen {
+    h1, h2, h3, h4, h5, h6{
+        letter-spacing: 0px;
+    }
+} */
 
 .archivo-black-regular {
   font-family: "Archivo Black", sans-serif;
@@ -133,6 +138,11 @@ nav{
     top: 0;
     left: 0;
     z-index: 9999;
+    transition: box-shadow .2s ease;
+
+}
+nav.is-scrolled{
+    box-shadow: 0 4px 18px rgba(28, 28, 28, .06);
 }
 nav .logo{
     font-family: "Archivo Black", sans-serif;

@@ -16,6 +16,13 @@ function suljeValikko() {
     menuToggle.setAttribute("aria-label", "Avaa valikko");
 }
 
+function updateNavScrollState() {
+    nav.classList.toggle("is-scrolled", window.scrollY > 10);
+}
+
+window.addEventListener("scroll", updateNavScrollState, { passive: true });
+updateNavScrollState();
+
 menuToggle.addEventListener("click", () => {
     const avattu = menuToggle.getAttribute("aria-expanded") === "true";
     nav.dataset.menuOpen = String(!avattu);
@@ -52,12 +59,13 @@ const mainImages = [
     y
 }));
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const mainImagesUseGrid = window.matchMedia("(max-width: 760px), (max-height: 600px) and (max-width: 1000px)");
 let mainScrollUpdatePending = false;
 
 function updateMainImages() {
     mainScrollUpdatePending = false;
 
-    if (reducedMotion.matches || window.innerWidth < 1370) {
+    if (reducedMotion.matches || mainImagesUseGrid.matches) {
         mainImages.forEach(({ element }) => {
             element.style.transform = "";
         });
@@ -98,7 +106,7 @@ const referenssit = [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.106.jpeg",
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1011.jpeg"
         ],
-        title: "Maalauskohde 1",
+        title: "Omakotitalo ja autotalli",
         description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt. "
     },
     {
@@ -107,17 +115,16 @@ const referenssit = [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.09.jpeg",
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.jpeg"
         ],
-        title: "Maalauskohde 2",
+        title: "Autotalli",
         description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
     },
     {
         image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1012.jpeg",
         images: [
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1012.jpeg",
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1114.jpeg"
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1012.jpeg"
         ],
-        title: "Maalauskohde 2",
-        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+        title: "Omakotitalo",
+        description: "Normaali omakotitalon maalaus. Talo sijaitsee Kurkimäessä."
     },
     {
         image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2842.jpeg",
@@ -128,8 +135,8 @@ const referenssit = [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1120.jpeg",
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2945.jpeg"
         ],
-        title: "Maalauskohde 2",
-        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+        title: "Omakotitalon homepesu",
+        description: "Omakotitalon puuosien homepesu. Talo sijaitsee Varkaudessa."
     },
     {
         image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2734.jpeg",
@@ -138,30 +145,23 @@ const referenssit = [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2734.jpeg",
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2735.jpeg",
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2736.jpeg",
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2838.jpeg"
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2838.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.27.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2528.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2424.jpeg",
+            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2629.jpeg"
         ],
-        title: "Maalauskohde 2",
-        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+        title: "Hirsitalo",
+        description: "Valmiin hirsitalon normaali maalaus."
     },
     {
         image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2950.jpeg",
         images: [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2950.jpeg"
         ],
-        title: "Maalauskohde 2",
-        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+        title: "Kesäkeittiö",
+        description: "Normaali maalaus."
     },
-    {
-        image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.27.jpeg",
-        images: [
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.27.jpeg",
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2528.jpeg",
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2424.jpeg",
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.26.2629.jpeg"
-        ],
-        title: "Maalauskohde 2",
-        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
-    }
 ];
 
 let aktiivinenReferenssi = null;

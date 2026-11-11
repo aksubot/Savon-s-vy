@@ -47,23 +47,6 @@ h1, h2, h3, h4, h5, h6{
     letter-spacing: -0.06em;
     font-family: "Archivo Black", sans-serif;
 }
-/* @media screen {
-    h1, h2, h3, h4, h5, h6{
-        letter-spacing: 0px;
-    }
-} */
-
-.archivo-black-regular {
-  font-family: "Archivo Black", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.poppins-bold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
 .brushStroke{
    rotate: 9deg;
 }
@@ -89,30 +72,6 @@ h1, h2, h3, h4, h5, h6{
 .button:hover img{
     animation: brushStrokeAnimation 0.8s forwards ease;  
 }
-/* @keyframes brushStrokeAnimation {
-    0%{
-        clip-path: inset(0 100% 0 0);
-    }    
-    20%{
-        clip-path: inset(0 100% 0 0);
-    }
-    35%{
-        clip-path: inset(0 66% 0 0);
-    }    
-    55%{
-        clip-path: inset(0 66% 0 0);
-    }
-    70%{
-        clip-path: inset(0 33% 0 0);
-    }
-    90%{
-        clip-path: inset(0 33% 0 0);
-    }
-    100%{
-        clip-path: inset(0 0 0 0);
-    }
-} */
-/* ENSIMMÄINEN VERSIO */
 @keyframes brushStrokeAnimation {
     from{
         clip-path: inset(0 100% 0 0);

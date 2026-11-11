@@ -149,7 +149,7 @@ const referenssit = [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1011.jpeg"
         ],
         title: "Omakotitalo ja autotalli",
-        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt. "
+        description: "Omakotitalon ja autotallin maalaustyö."
     },
     {
         image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.09.jpeg",
@@ -158,7 +158,7 @@ const referenssit = [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.jpeg"
         ],
         title: "Autotalli",
-        description: "Tutustu tähän maalauskohteeseen tarkemmin. Lisää tähän esimerkiksi sijainti, työn laajuus ja käytetyt sävyt."
+        description: "Autotallin maalaustyö."
     },
     {
         image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.1012.jpeg",

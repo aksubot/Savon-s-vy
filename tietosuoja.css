@@ -41,14 +41,6 @@
     margin-top: 12px;
     color: var(--väri-teksti-secondary);
 }
-.tietosuojaHuomio{
-    margin-top: 32px;
-    padding: 18px 20px;
-    border-left: 4px solid var(--väri-main);
-    border-radius: 0 12px 12px 0;
-    background: #f3f1e9;
-    line-height: 1.7;
-}
 .tietosuojaSivu section{
     margin-top: 36px;
 }

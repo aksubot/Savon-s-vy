@@ -37,7 +37,6 @@ main .button{
     justify-content: center;
     width: 100%;
     text-align: center;
-    /* margin: clamp(64px, 12vw, 180px) auto; */
     padding: clamp(32px, 4vw, 56px) 24px;
     background-color: var(--väri-main);
     margin-top: 20vh;
@@ -72,9 +71,6 @@ main .button{
     max-width: 900px;
     font-size: var(--väliotsikko-koko);
     line-height: 1.1;
-    /* -webkit-text-stroke: 2.5px var(--väri-main); */
-    /* paint-order: stroke fill; */
-    /* text-shadow: 0 2px 5px rgba(0, 0, 0, .2); */
 }
 .about .osioTunniste{
     position: relative;
@@ -90,9 +86,6 @@ main .button{
     margin-top: 20px;
     font-size: clamp(1rem, 1.8vw, 1.25rem);
     line-height: 1.8;
-    /* -webkit-text-stroke: 2px var(--väri-main); */
-    /* paint-order: stroke fill; */
-    /* text-shadow: 0 2px 5px rgba(0, 0, 0, .2); */
 }
 .tyoprosessi{
     width: 100%;

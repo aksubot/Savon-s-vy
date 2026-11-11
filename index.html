@@ -176,7 +176,6 @@
                 <p>Kerro lyhyesti maalauskohteestasi, niin olemme sinuun yhteydessä ja sovimme maksuttoman arvion.</p>
             </div>
             <form class="arvioLomake" action="https://formspree.io/f/xgakeawd" method="POST">
-                <!-- Replace FORM_ID with your Formspree form ID. -->
                 <input type="hidden" name="_subject" value="Uusi arviointipyyntö - Savon sävy">
                 <input class="arvioHoneypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <div class="arvioKentat">
@@ -193,8 +192,8 @@
                         <input type="tel" name="puhelinnumero" autocomplete="tel">
                     </label>
                     <label class="arvioKentta arvioKenttaLevea">
-                        Kohteen osoite
-                        <input type="text" name="Osoite" autocomplete="street-address" placeholder="Katuosoite, postinumero ja paikkakunta">
+                        Kohteen osoite *
+                        <input type="text" name="Osoite" autocomplete="street-address" placeholder="Katuosoite, postinumero ja paikkakunta" required>
                     </label>
                     <label class="arvioKentta arvioKenttaLevea">
                         Kerro kohteesta ja toiveistasi *
@@ -203,6 +202,7 @@
                 </div>
                 <p class="arvioPakolliset">* Pakollinen kenttä</p>
                 <button class="arvioLaheta" type="submit">Lähetä arviointipyyntö</button>
+                <p class="arvioLomakeIlmoitus" role="status" aria-live="polite" aria-atomic="true"></p>
                 <p class="arvioTietosuoja">Käytämme tietojasi arviointipyyntöön vastaamiseen. <a href="./tietosuoja.html">Lue tietosuojaseloste</a>.</p>
             </form>
         </div>

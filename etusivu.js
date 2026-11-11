@@ -9,6 +9,9 @@ const seuraavaKuva = document.getElementById("seuraavaKuva");
 const kuvaLaskuri = document.getElementById("kuvaLaskuri");
 const nav = document.querySelector("nav");
 const menuToggle = document.querySelector(".menuToggle");
+const arvioLomake = document.querySelector(".arvioLomake");
+const arvioLomakeIlmoitus = document.querySelector(".arvioLomakeIlmoitus");
+const arvioLaheta = arvioLomake.querySelector(".arvioLaheta");
 
 function suljeValikko() {
     nav.dataset.menuOpen = "false";
@@ -22,6 +25,45 @@ function updateNavScrollState() {
 
 window.addEventListener("scroll", updateNavScrollState, { passive: true });
 updateNavScrollState();
+
+let arvioLahetysKaynnissa = false;
+arvioLomake.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (arvioLahetysKaynnissa) {
+        return;
+    }
+
+    arvioLahetysKaynnissa = true;
+    arvioLaheta.disabled = true;
+    arvioLaheta.textContent = "Lähetetään...";
+    arvioLomakeIlmoitus.textContent = "";
+    delete arvioLomakeIlmoitus.dataset.state;
+
+    try {
+        const response = await fetch(arvioLomake.action, {
+            method: "POST",
+            body: new FormData(arvioLomake),
+            headers: { Accept: "application/json" }
+        });
+
+        if (!response.ok) {
+            arvioLomakeIlmoitus.dataset.state = "error";
+            arvioLomakeIlmoitus.textContent = "Lähetys ei onnistunut. Tarkista tiedot ja yritä uudelleen, tai ota meihin yhteyttä puhelimitse.";
+            return;
+        }
+
+        arvioLomake.reset();
+        arvioLomakeIlmoitus.dataset.state = "success";
+        arvioLomakeIlmoitus.textContent = "Kiitos viestistäsi! Arviointipyyntösi on lähetetty. Palaamme asiaan mahdollisimman pian.";
+    } catch {
+        arvioLomakeIlmoitus.dataset.state = "error";
+        arvioLomakeIlmoitus.textContent = "Lähetys ei onnistunut verkkovirheen vuoksi. Tarkista yhteys ja yritä uudelleen.";
+    } finally {
+        arvioLahetysKaynnissa = false;
+        arvioLaheta.disabled = false;
+        arvioLaheta.textContent = "Lähetä arviointipyyntö";
+    }
+});
 
 menuToggle.addEventListener("click", () => {
     const avattu = menuToggle.getAttribute("aria-expanded") === "true";

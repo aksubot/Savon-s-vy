@@ -162,6 +162,9 @@ nav .links{
     align-items: center;
     margin-left: auto;
 }
+.navButton{
+    color: var(--väri-teksti) !important;
+}
 .menuToggle{
     display: none;
 }

@@ -169,6 +169,8 @@
     background: rgba(252, 198, 4, 0.1);
     border: 1px solid rgba(252, 198, 4, 0.24);
     text-align: left;
+        box-shadow: 0 12px 18px rgba(0, 0, 0, 0.04);
+
 }
 
 .feature-item h3 {

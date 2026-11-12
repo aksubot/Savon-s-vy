@@ -11,86 +11,100 @@ const nav = document.querySelector("nav");
 const menuToggle = document.querySelector(".menuToggle");
 const arvioLomake = document.querySelector(".arvioLomake");
 const arvioLomakeIlmoitus = document.querySelector(".arvioLomakeIlmoitus");
-const arvioLaheta = arvioLomake.querySelector(".arvioLaheta");
+const arvioLaheta = arvioLomake ? arvioLomake.querySelector(".arvioLaheta") : null;
 
 function suljeValikko() {
+    if (!nav || !menuToggle) {
+        return;
+    }
+
     nav.dataset.menuOpen = "false";
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Avaa valikko");
 }
 
 function updateNavScrollState() {
-    nav.classList.toggle("is-scrolled", window.scrollY > 10);
-}
-
-window.addEventListener("scroll", updateNavScrollState, { passive: true });
-updateNavScrollState();
-
-let arvioLahetysKaynnissa = false;
-arvioLomake.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (arvioLahetysKaynnissa) {
+    if (!nav) {
         return;
     }
 
-    arvioLahetysKaynnissa = true;
-    arvioLaheta.disabled = true;
-    arvioLaheta.textContent = "Lähetetään...";
-    arvioLomakeIlmoitus.textContent = "";
-    delete arvioLomakeIlmoitus.dataset.state;
+    nav.classList.toggle("is-scrolled", window.scrollY > 10);
+}
 
-    try {
-        const response = await fetch(arvioLomake.action, {
-            method: "POST",
-            body: new FormData(arvioLomake),
-            headers: { Accept: "application/json" }
-        });
+if (nav) {
+    window.addEventListener("scroll", updateNavScrollState, { passive: true });
+    updateNavScrollState();
+}
 
-        if (!response.ok) {
-            arvioLomakeIlmoitus.dataset.state = "error";
-            arvioLomakeIlmoitus.textContent = "Lähetys ei onnistunut. Tarkista tiedot ja yritä uudelleen, tai ota meihin yhteyttä puhelimitse.";
+let arvioLahetysKaynnissa = false;
+if (arvioLomake && arvioLaheta && arvioLomakeIlmoitus) {
+    arvioLomake.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (arvioLahetysKaynnissa) {
             return;
         }
 
-        arvioLomake.reset();
-        arvioLomakeIlmoitus.dataset.state = "success";
-        arvioLomakeIlmoitus.textContent = "Kiitos viestistäsi! Arviointipyyntösi on lähetetty. Palaamme asiaan mahdollisimman pian.";
-    } catch {
-        arvioLomakeIlmoitus.dataset.state = "error";
-        arvioLomakeIlmoitus.textContent = "Lähetys ei onnistunut verkkovirheen vuoksi. Tarkista yhteys ja yritä uudelleen.";
-    } finally {
-        arvioLahetysKaynnissa = false;
-        arvioLaheta.disabled = false;
-        arvioLaheta.textContent = "Lähetä arviointipyyntö";
-    }
-});
+        arvioLahetysKaynnissa = true;
+        arvioLaheta.disabled = true;
+        arvioLaheta.textContent = "Lähetetään...";
+        arvioLomakeIlmoitus.textContent = "";
+        delete arvioLomakeIlmoitus.dataset.state;
 
-menuToggle.addEventListener("click", () => {
-    const avattu = menuToggle.getAttribute("aria-expanded") === "true";
-    nav.dataset.menuOpen = String(!avattu);
-    menuToggle.setAttribute("aria-expanded", String(!avattu));
-    menuToggle.setAttribute("aria-label", avattu ? "Avaa valikko" : "Sulje valikko");
-});
+        try {
+            const response = await fetch(arvioLomake.action, {
+                method: "POST",
+                body: new FormData(arvioLomake),
+                headers: { Accept: "application/json" }
+            });
 
-nav.querySelectorAll(".links a").forEach((link) => {
-    link.addEventListener("click", suljeValikko);
-});
+            if (!response.ok) {
+                arvioLomakeIlmoitus.dataset.state = "error";
+                arvioLomakeIlmoitus.textContent = "Lähetys ei onnistunut. Tarkista tiedot ja yritä uudelleen, tai ota meihin yhteyttä puhelimitse.";
+                return;
+            }
 
-document.addEventListener("click", (event) => {
-    if (!nav.contains(event.target)) {
-        suljeValikko();
-    }
-});
+            arvioLomake.reset();
+            arvioLomakeIlmoitus.dataset.state = "success";
+            arvioLomakeIlmoitus.textContent = "Kiitos viestistäsi! Arviointipyyntösi on lähetetty. Palaamme asiaan mahdollisimman pian.";
+        } catch {
+            arvioLomakeIlmoitus.dataset.state = "error";
+            arvioLomakeIlmoitus.textContent = "Lähetys ei onnistunut verkkovirheen vuoksi. Tarkista yhteys ja yritä uudelleen.";
+        } finally {
+            arvioLahetysKaynnissa = false;
+            arvioLaheta.disabled = false;
+            arvioLaheta.textContent = "Lähetä arviointipyyntö";
+        }
+    });
+}
 
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
-        suljeValikko();
-        menuToggle.focus();
-    }
-});
+if (nav && menuToggle) {
+    menuToggle.addEventListener("click", () => {
+        const avattu = menuToggle.getAttribute("aria-expanded") === "true";
+        nav.dataset.menuOpen = String(!avattu);
+        menuToggle.setAttribute("aria-expanded", String(!avattu));
+        menuToggle.setAttribute("aria-label", avattu ? "Avaa valikko" : "Sulje valikko");
+    });
+
+    nav.querySelectorAll(".links a").forEach((link) => {
+        link.addEventListener("click", suljeValikko);
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!nav.contains(event.target)) {
+            suljeValikko();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+            suljeValikko();
+            menuToggle.focus();
+        }
+    });
+}
 
 const mainSection = document.querySelector("main");
-const mainImages = [
+const mainImages = mainSection ? [
     { selector: ".kuva1", x: -1, y: -0.5 },
     { selector: ".kuva2", x: -1, y: 0.5 },
     { selector: ".kuva4", x: 1, y: 0.5 },
@@ -99,17 +113,23 @@ const mainImages = [
     element: mainSection.querySelector(selector),
     x,
     y
-}));
+})) : [];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mainImagesUseGrid = window.matchMedia("(max-width: 760px), (max-height: 600px) and (max-width: 1000px)");
 let mainScrollUpdatePending = false;
 
 function updateMainImages() {
+    if (!mainSection || !mainImages.length) {
+        return;
+    }
+
     mainScrollUpdatePending = false;
 
     if (reducedMotion.matches || mainImagesUseGrid.matches) {
         mainImages.forEach(({ element }) => {
-            element.style.transform = "";
+            if (element) {
+                element.style.transform = "";
+            }
         });
         return;
     }
@@ -121,21 +141,29 @@ function updateMainImages() {
     const distance = progress * Math.min(160, Math.max(32, window.innerWidth * 0.12));
 
     mainImages.forEach(({ element, x, y }) => {
-        element.style.transform = `translate3d(${distance * x}px, ${distance * y}px, 0)`;
+        if (element) {
+            element.style.transform = `translate3d(${distance * x}px, ${distance * y}px, 0)`;
+        }
     });
 }
 
 function scheduleMainImageUpdate() {
+    if (!mainSection || !mainImages.length) {
+        return;
+    }
+
     if (!mainScrollUpdatePending) {
         mainScrollUpdatePending = true;
         window.requestAnimationFrame(updateMainImages);
     }
 }
 
-window.addEventListener("scroll", scheduleMainImageUpdate, { passive: true });
-window.addEventListener("resize", scheduleMainImageUpdate);
-reducedMotion.addEventListener("change", scheduleMainImageUpdate);
-scheduleMainImageUpdate();
+if (mainSection && mainImages.length) {
+    window.addEventListener("scroll", scheduleMainImageUpdate, { passive: true });
+    window.addEventListener("resize", scheduleMainImageUpdate);
+    reducedMotion.addEventListener("change", scheduleMainImageUpdate);
+    scheduleMainImageUpdate();
+}
 
 const referenssit = [
     {
@@ -206,66 +234,68 @@ const referenssit = [
     },
 ];
 
-let aktiivinenReferenssi = null;
-let aktiivinenKuva = 0;
+if (referenssiDialog && referenssiLista && referenssiKuva && referenssiOtsikko && referenssiKuvaus && suljeReferenssi && edellinenKuva && seuraavaKuva && kuvaLaskuri) {
+    let aktiivinenReferenssi = null;
+    let aktiivinenKuva = 0;
 
-function naytaKuva() {
-    const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
-    referenssiKuva.src = kuvat[aktiivinenKuva];
-    referenssiKuva.alt = `${aktiivinenReferenssi.title} – kuva ${aktiivinenKuva + 1}`;
-    kuvaLaskuri.textContent = `${aktiivinenKuva + 1} / ${kuvat.length}`;
-    edellinenKuva.hidden = kuvat.length < 2;
-    seuraavaKuva.hidden = kuvat.length < 2;
-}
+    function naytaKuva() {
+        const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
+        referenssiKuva.src = kuvat[aktiivinenKuva];
+        referenssiKuva.alt = `${aktiivinenReferenssi.title} – kuva ${aktiivinenKuva + 1}`;
+        kuvaLaskuri.textContent = `${aktiivinenKuva + 1} / ${kuvat.length}`;
+        edellinenKuva.hidden = kuvat.length < 2;
+        seuraavaKuva.hidden = kuvat.length < 2;
+    }
 
-referenssit.forEach((referenssi) => {
-    const button = document.createElement("button");
-    button.className = "referenssi";
-    button.type = "button";
-    button.setAttribute("aria-haspopup", "dialog");
-    button.setAttribute("aria-controls", "referenssiTiedot");
+    referenssit.forEach((referenssi) => {
+        const button = document.createElement("button");
+        button.className = "referenssi";
+        button.type = "button";
+        button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute("aria-controls", "referenssiTiedot");
 
-    const image = document.createElement("img");
-    image.className = "kuva";
-    image.loading = "lazy";
-    image.decoding = "async";
-    image.alt = referenssi.title;
-    image.src = referenssi.image;
+        const image = document.createElement("img");
+        image.className = "kuva";
+        image.loading = "lazy";
+        image.decoding = "async";
+        image.alt = referenssi.title;
+        image.src = referenssi.image;
 
-    const title = document.createElement("span");
-    title.textContent = referenssi.title;
+        const title = document.createElement("span");
+        title.textContent = referenssi.title;
 
-    button.append(image, title);
-    button.addEventListener("click", () => {
-        aktiivinenReferenssi = referenssi;
-        aktiivinenKuva = 0;
-        naytaKuva();
-        referenssiOtsikko.textContent = referenssi.title;
-        referenssiKuvaus.textContent = referenssi.description;
-        referenssiDialog.showModal();
+        button.append(image, title);
+        button.addEventListener("click", () => {
+            aktiivinenReferenssi = referenssi;
+            aktiivinenKuva = 0;
+            naytaKuva();
+            referenssiOtsikko.textContent = referenssi.title;
+            referenssiKuvaus.textContent = referenssi.description;
+            referenssiDialog.showModal();
+        });
+
+        referenssiLista.append(button);
     });
 
-    referenssiLista.append(button);
-});
+    edellinenKuva.addEventListener("click", () => {
+        const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
+        aktiivinenKuva = (aktiivinenKuva - 1 + kuvat.length) % kuvat.length;
+        naytaKuva();
+    });
 
-edellinenKuva.addEventListener("click", () => {
-    const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
-    aktiivinenKuva = (aktiivinenKuva - 1 + kuvat.length) % kuvat.length;
-    naytaKuva();
-});
+    seuraavaKuva.addEventListener("click", () => {
+        const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
+        aktiivinenKuva = (aktiivinenKuva + 1) % kuvat.length;
+        naytaKuva();
+    });
 
-seuraavaKuva.addEventListener("click", () => {
-    const kuvat = aktiivinenReferenssi.images ?? [aktiivinenReferenssi.image];
-    aktiivinenKuva = (aktiivinenKuva + 1) % kuvat.length;
-    naytaKuva();
-});
-
-suljeReferenssi.addEventListener("click", () => {
-    referenssiDialog.close();
-});
-
-referenssiDialog.addEventListener("click", (event) => {
-    if (event.target === referenssiDialog) {
+    suljeReferenssi.addEventListener("click", () => {
         referenssiDialog.close();
-    }
-});
+    });
+
+    referenssiDialog.addEventListener("click", (event) => {
+        if (event.target === referenssiDialog) {
+            referenssiDialog.close();
+        }
+    });
+}

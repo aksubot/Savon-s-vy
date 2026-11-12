@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xn--savonsvy-5za.fi/sitemap.xml

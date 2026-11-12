@@ -10,7 +10,8 @@
     --pieni-teksti2-koko: clamp(1rem, 1.5vw, 1.5rem);
 
     --väri-main: #fcc604;
-    --väri-body: #fafafa;
+    /* --väri-body: #fafafa; */
+    --väri-body: #fcfcfc;
     --väri-teksti: #1c1c1c;
     --väri-teksti-secondary: rgba(0, 0, 0, 0.6);
 }
@@ -104,6 +105,9 @@ nav.is-scrolled{
     box-shadow: 0 4px 18px rgba(28, 28, 28, .06);
 }
 nav .logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-family: "Archivo Black", sans-serif;
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     white-space: nowrap;
@@ -114,6 +118,13 @@ nav .logo{
 nav .logo h1{
     font-size: inherit;
     line-height: 1.15;
+}
+nav .logo img{
+    display: block;
+    width: clamp(56px, 6vw, 76px);
+    height: auto;
+    border-radius: 0;
+    filter: none;
 }
 nav .links{
     display: flex;
@@ -143,7 +154,7 @@ img, .img, .kuva{
     filter: none;
 }
 
-@media (max-width: 760px){
+@media (max-width: 900px){
     :root{
         --nav-height: 76px;
     }

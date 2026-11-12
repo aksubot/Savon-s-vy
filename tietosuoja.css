@@ -15,11 +15,21 @@
     box-shadow: 0 4px 18px rgba(28, 28, 28, .06);
 }
 .tietosuojaLogo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
     color: var(--väri-teksti);
     font-family: "Archivo Black", sans-serif;
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     text-decoration: none;
     text-transform: uppercase;
+}
+.tietosuojaLogo img{
+    display: block;
+    width: 64px;
+    height: auto;
+    border-radius: 0;
+    filter: none;
 }
 .tietosuojaTakaisin,
 .tietosuojaAlapalkki a{

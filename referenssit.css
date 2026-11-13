@@ -48,7 +48,7 @@
 .stat-card {
     background: rgba(255, 255, 255, 0.82);
     border: 1px solid rgba(28, 28, 28, 0.08);
-    border-radius: 22px;
+    border-radius: 20px;
     padding: clamp(20px, 3vw, 28px);
     box-shadow: 0 12px 18px rgba(0, 0, 0, 0.04);
 }
@@ -82,7 +82,7 @@
     overflow: hidden;
     background: #ffffff;
     border: 1px solid rgba(28, 28, 28, 0.08);
-    border-radius: 26px;
+    border-radius: 20px;
     box-shadow: 0 15px 28px rgba(28, 28, 28, 0.06);
 }
 
@@ -165,7 +165,7 @@
 
 .feature-item {
     padding: 26px 22px;
-    border-radius: 22px;
+    border-radius: 20px;
     background: rgba(252, 198, 4, 0.1);
     border: 1px solid rgba(252, 198, 4, 0.24);
     text-align: left;

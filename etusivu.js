@@ -183,7 +183,7 @@ const referenssit = [
         image: "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.09.jpeg",
         images: [
             "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.09.jpeg",
-            "./Kuvat/WhatsApp Image 2026-10-31 at 20.22.jpeg"
+            "./Kuvat/uusi-maalaus-kuva.jpeg"
         ],
         title: "Autotalli",
         description: "Autotallin maalaustyö."
